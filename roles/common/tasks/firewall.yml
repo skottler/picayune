@@ -1,0 +1,7 @@
+---
+
+# This zone should have eth0 (assuming that's the public interface) as a part
+# of it. If that's not the case then make sure to reconfigure firewalld to
+# include your public-facing (v)NIC.
+- name: Allow SSH access
+  firewalld: port=22/tcp permanent=true state=enabled zone=public
