@@ -1,0 +1,11 @@
+---
+
+- name: Install security-related packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - fail2ban
+    - lynis
+    - rkhunter
+
+- name: Ensure fail2ban is started
+  service: name=fail2ban state=started

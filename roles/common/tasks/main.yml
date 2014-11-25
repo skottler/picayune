@@ -1,0 +1,19 @@
+---
+
+- include: epel.yml tags=repos
+
+- name: Install basic packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - bison-devel
+    - cmake
+    - gcc
+    - glibc-devel
+    - git-core
+    - htop
+    - make
+    - vim
+    - zlib-devel
+
+- include: ntp.yml tags=ntp,time
+- include: security.yml tags=security
