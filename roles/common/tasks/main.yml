@@ -18,4 +18,5 @@
 - include: firewall.yml tags=security,firewall,ssh
 - include: ntp.yml tags=ntp,time
 - include: security.yml tags=security
+- include: ssh.yml tags=ssh,security
 - include: sysctl.yml tags=security,kernel

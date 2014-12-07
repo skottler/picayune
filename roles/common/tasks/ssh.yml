@@ -1,0 +1,12 @@
+---
+
+- name: Start and enable sshd
+  service: name=sshd state=running enabled=yes
+
+- name: Disable ssh password authentication
+  lineinfile:
+    dest=/etc/ssh/sshd_config
+    line="PasswordAuthentication no"
+    regexp="#?PasswordAuthentication (yes|no)"
+  notify:
+    - restart sshd
