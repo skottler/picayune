@@ -1,5 +1,8 @@
 ---
 
+- name: Start firewalld
+  service: name=firewalld state=started enabled=yes
+
 # This zone should have eth0 (assuming that's the public interface) as a part
 # of it. If that's not the case then make sure to reconfigure firewalld to
 # include your public-facing (v)NIC.
