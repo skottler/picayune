@@ -31,9 +31,14 @@
 - name: Install basic packages with apt
   apt: pkg={{ item }} state=installed
   with_items:
+    - apt-transport-https
     - build-essential
     - git-core
     - htop
+    - iftop
+    - iotop
+    - molly-guard
+    - mosh
     - sudo
     - vim
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
