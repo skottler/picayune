@@ -4,6 +4,10 @@
   with_items: groups_to_create
   tags: ['users','groups','configuration']
 
+- name: Configuring sudo for nopass group
+  template: src=sudoers-nopass dest=/etc/sudoers.d/nopass
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
 - name: Per-user group creation
   group: name="{{item.username}}" gid="{{item.uid}}"
   with_items: users
