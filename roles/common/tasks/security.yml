@@ -1,11 +1,20 @@
 ---
 
-- name: Install security-related packages
+- name: Install security-related packages with yum
   yum: pkg={{ item }} state=installed
   with_items:
     - fail2ban
     - lynis
     - rkhunter
+  when: ansible_distribution == 'CentOS'
+
+- name: Install security-related packages with apt
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - fail2ban
+    - lynis
+    - rkhunter
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Ensure fail2ban is started
   service: name=fail2ban state=started

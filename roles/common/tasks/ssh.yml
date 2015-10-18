@@ -1,7 +1,7 @@
 ---
 
 - name: Start and enable sshd
-  service: name=sshd state=running enabled=yes
+  service: name={{ ssh_service }} state=running enabled=yes
 
 - name: Disable ssh password authentication
   lineinfile:
@@ -9,4 +9,4 @@
     line="PasswordAuthentication no"
     regexp="#?PasswordAuthentication (yes|no)"
   notify:
-    - restart sshd
+    - restart {{ ssh_service }}

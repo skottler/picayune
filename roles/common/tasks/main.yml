@@ -2,7 +2,7 @@
 
 - include: epel.yml tags=repos
 
-- name: Install basic packages
+- name: Install basic packages with yum
   yum: pkg={{ item }} state=installed
   with_items:
     - bison-devel
@@ -14,6 +14,21 @@
     - make
     - vim
     - zlib-devel
+  when: ansible_distribution == 'CentOS'
+
+- name: Update apt cache
+  apt: update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install basic packages with apt
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - build-essential
+    - git-core
+    - htop
+    - sudo
+    - vim
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - include: firewall.yml tags=security,firewall,ssh
 - include: ntp.yml tags=ntp,time

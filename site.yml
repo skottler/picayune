@@ -1,11 +1,11 @@
 ---
 - hosts: all
   user: root
-  sudo: True
   gather_facts: True
   vars_files:
     - vars/defaults.yml
-    - vars/{{ 'testing' if testing is defined else 'user' }}.yml
+    - vars/user.yml
+    - vars/{{ ansible_os_family }}.yml
 
   roles:
     - common

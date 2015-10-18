@@ -2,6 +2,8 @@
 
 - name: Setup EPEL7 repository
   copy: src=epel.repo.j2 dest=/etc/yum.repos.d/epel.repo
+  when: ansible_distribution == 'CentOS'
 
 - name: Add EPEL7 key
   copy: src=RPM-GPG-KEY-EPEL-7 dest=/etc/pki/rpm-gpg
+  when: ansible_distribution == 'CentOS'

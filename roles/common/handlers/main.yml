@@ -1,7 +1,7 @@
 ---
 
-- name: restart ntpd
-  service: name=ntpd state=restarted
+- name: restart {{ ntp_service }}
+  service: name={{ ntp_service }} state=restarted
 
-- name: restart sshd
-  service: name=sshd state=restarted
+- name: restart {{ ssh_service }}
+  service: name={{ ssh_service }} state=restarted

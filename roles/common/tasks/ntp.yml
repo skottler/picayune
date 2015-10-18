@@ -1,12 +1,17 @@
 ---
 
-- name: Install ntp
+- name: Install ntp with yum
   yum: pkg=ntp state=installed
+  when: ansible_distribution == 'CentOS'
+
+- name: Install ntp with apt
+  apt: pkg=ntp state=installed
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Setup ntp.conf
   template: src=ntp.conf.j2 dest=/etc/ntp.conf
   notify:
-    - restart ntpd
+    - restart {{ ntp_service }}
 
-- name: Ensure ntpd is running and enabled
-  service: name=ntpd state=started enabled=yes
+- name: Ensure ntp is running and enabled
+  service: name={{ ntp_service }} state=started enabled=yes

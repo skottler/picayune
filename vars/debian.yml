@@ -1,0 +1,4 @@
+---
+
+ntp_service: ntp
+ssh_service: ssh
