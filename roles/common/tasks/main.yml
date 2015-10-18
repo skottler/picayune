@@ -24,6 +24,10 @@
   apt: update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
+- name: Upgrade all safe packages with apt
+  apt: upgrade=safe
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
 - name: Install basic packages with apt
   apt: pkg={{ item }} state=installed
   with_items:
